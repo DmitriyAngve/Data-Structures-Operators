@@ -51,6 +51,23 @@ const restaurant = {
   },
 };
 
+//-----------ENHANCED OBJECT LITARELS------------
+
+//-------------LOOPING ARRAYS (FOR-OF LOOP)-----
+/*
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) console.log(item);
+
+for (const [i, el] of menu.entries()) {
+  // console.log(item); // entries - creating new array for each iteration, like: [0, item of menu]
+  console.log(`${i + 1}: ${el}`); // We'll see 1: item of menu. {i + 1} - for ral-world menu (starts from 1, not 0)
+}
+
+// console.log(menu.entries()); //Array Iterator {}
+// console.log([...menu.entries()]);
+
+/*
 //-----------------LOGICAL ASSIGNMENT OPERATORS------------
 
 const rest1 = {
