@@ -6,16 +6,18 @@
 
 // Data needed for first part of the section
 
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
 const openingHours = {
-  thu: {
+  [weekdays[3]]: {
     open: 12,
     close: 22,
   },
-  fri: {
+  [weekdays[4]]: {
     open: 11,
     close: 23,
   },
-  sat: {
+  [weekdays[5]]: {
     open: 0, // Open 24 hours
     close: 24,
   },
@@ -51,7 +53,75 @@ const restaurant = {
   },
 };
 
-//-----------ENHANCED OBJECT LITARELS------------
+/*
+//----------LOOPING OBJECTS: OBJECTS KEYS, VALUES AND ENTRIES-----
+
+//Property NAMES (KEYS)
+const properties = Object.keys(openingHours);
+console.log(properties);
+let openStr = `We are open on ${properties.length} days: `;
+
+//
+
+for (const day of properties) {
+  openStr += `${day}, `;
+}
+console.log(openStr); // We are open on 3 days: thu, fri, sat,
+
+//Property VALUES (THEM SELF)
+const values = Object.values(openingHours);
+console.log(values); // We'll see all values.
+
+//Property ENTRIES
+
+const entries = Object.entries(openingHours);
+// console.log(entries); // Transform object into an array. First element the key, then the value
+
+// LOOPING AN ARRAY
+// [key, value]
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key} we open at ${open} and close at ${close}`);
+  // { open, close } immediately destructured
+}
+
+/*
+//---------------OPTIONAL CHAINING (?.)---------------
+
+// console.log(restaurant.openingHours.mon); // undefined
+// console.log(restaurant.openingHours.mon.open); // TypeError 'open' - undefined
+
+// Solution (old version):
+if (restaurant.openingHours && openingHours.mon)
+  console.log(restaurant.openingHours.mon.open); // 11
+
+// Solution (with optional chaining)
+console.log(restaurant.openingHours.mon?.open); // If property before ? exist then open property will be read from there
+
+console.log(restaurant.openingHours?.mon?.open);
+
+// Real-world example
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? 'closed';
+  //"?? 'closed'" - o remove undesined if we don't have such property
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+// Methods (OPTIONAL CHAINING (?.))-----------------
+console.log(restaurant.order?.(0, 1) ?? 'Method does not exist'); //(2) ['Focaccia', 'Pasta']
+console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist'); //Method does not exist. ?? imediately go to second operant
+
+//Arrays (OPTIONAL CHAINING (?.))-------------------
+
+const users = [{ name: 'Dmitriy', email: 'hello@gmail.com' }];
+// const users = [];
+
+// console.log(users[0]?.name ?? 'User array empty'); // Optional chaining here tests if the value on the left does exist
+
+if (users.length > 0) console.log(users[0].name);
+else console.log('users array empty'); // Dmitriy
+
+//-----------ENHANCED OBJECT LITARELS-----------------
 
 // const restaurant = {} - literal syntax
 
@@ -60,6 +130,8 @@ const restaurant = {
 //1. We took openinHours outside from restaraunt Object
 
 //2. We delete function "order function(starterIndex, mainIndex)", ES6 apply that
+
+//3 We We took weekdays outside from openingHours Object and compute elemets
 
 //-------------LOOPING ARRAYS (FOR-OF LOOP)-----
 /*
@@ -431,3 +503,66 @@ team1 > team2 && console.log(`Team 2 is more likely to win`);
 // } = restaurant;
 // console.log(restaurantName, hours, tags);
 */
+
+//-----------------CODDING CHALENGE #2------------------
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+//1. Перебрать массив в объекте и вывести его ключ и значение. entries() - creating new array for each iteration
+for (const [i, player] of game.scored.entries())
+  console.log(`Goal ${i + 1}: ${player}`);
+//2. Использование for of для подсчета среднего арифметического в объекте внутри объекта
+
+const odds = Object.values(game.odds);
+let average = 0;
+for (const odd of odds) average += odd;
+average /= odds.length;
+console.log(average);
+
+//3.
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+  console.log(`Odd ${teamStr} ${odd} `);
+}
+
+// for (const [team, odd] of Object.entries(game.odds)) {
+//   const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+//   console.log(`Odd of ${teamStr} ${odd}`);
