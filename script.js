@@ -60,6 +60,63 @@ const restaurant = {
     console.log(otherIngredient);
   },
 };
+
+/*
+//////////////////////////////////////////////////////////////
+////////////////////////////SETS//////////////////////////////
+//////////////////////////////////////////////////////////////
+
+//Sets is collection of the !!UNIQUE!! values
+const orderSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+
+console.log(orderSet); //removes duplicate elements and outputs the rest
+
+console.log(new Set('Jonas')); // {'J', 'o', 'n', 'a', 's'}
+
+// Size of Set
+console.log(orderSet.size); // 3
+
+// Availability (has like includes in array)
+console.log(orderSet.has('Pizza')); // true
+console.log(orderSet.has('Bread')); // false
+
+// Adding new element
+orderSet.add('Garlic Bread'); // add
+orderSet.add('Garlic Bread'); // no
+console.log(orderSet); //{'Pasta', 'Pizza', 'Risotto', 'Garlic Bread'}
+
+// Delete element
+orderSet.delete('Risotto');
+console.log(orderSet); // {'Pasta', 'Pizza', 'Garlic Bread'}
+
+// We can't retrive element from Set (if we need it, when use an array)
+
+// Delete all elements
+// orderSet.clear();
+// console.log(orderSet); // {size: 0}
+
+// Sets are also iterable
+for (const order of orderSet) console.log(order); // Pasta Pizza Garlic Bread
+
+// Real-world example
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+const staffUnique = [...new Set(staff)];
+// [...new Set(staff)] - create an NEW UNIQUE array
+console.log(staffUnique); // ['Waiter', 'Chef', 'Manager']
+console.log(
+  new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
+); // 3 (if we dont need UNIQUE NEW array)
+
+// Counting how many different letters there are in a string
+console.log(new Set('DmitriyAngve').size); // 11
+
 /*
 //////////////////////////////////////////////////////////////
 //////////////////////LOOPING OBJECTS/////////////////////////
