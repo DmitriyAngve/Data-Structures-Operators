@@ -61,12 +61,76 @@ const restaurant = {
   },
 };
 
+//////////////////////////////////////////////////////////////
+//////////////////////////MAPS ITERATION//////////////////////
+//////////////////////////////////////////////////////////////
+
+/*
+//////////////////////////////////////////////////////////////
+////////////////////////////MAPS//////////////////////////////
+//////////////////////////////////////////////////////////////
+
+// Maps is a data structure that we can use to map values to keys (сопоставление значений с ключами)
+
+// Create Map
+const rest = new Map();
+
+// Fill Map !!!.set!!!
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, Italy');
+console.log(rest.set(2, 'Lisbon, Portugal')); //  {'name' => 'Classico Italiano', 1 => 'Firenze Italy', 2 => 'Lisbon, Portugal'}
+
+// Calling "set" method returns the updated Map
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :D')
+  .set(false, 'We are closed :(');
+
+// Get method - to read data from Map
+console.log(rest.get('name')); // Classico Italiano
+console.log(rest.get(true)); // We are open :D
+console.log(rest.get(1)); // Firenze, Italy
+
+// Real-world example
+const time1 = 11;
+console.log(rest.get(time1 > rest.get('open') && time1 < rest.get('close'))); // We are closed :(
+const time2 = 15;
+console.log(rest.get(time2 > rest.get('open') && time2 < rest.get('close'))); // We are open :D
+
+// Method how to check if a map comntains a certian key (without OOP)
+console.log(rest.has('categories'));
+rest.delete(2);
+// rest.clear();
+console.log(rest);
+console.log(rest.size); // 7
+
+// How we can in fact use arrays or objects as map keys
+rest.set([1, 2], 'Test');
+console.log(rest); // add not a key, also array
+console.log(rest.size); // 8
+
+// How to get the date based on array [1, 2]
+
+console.log(rest.get([1, 2])); // undefined (This two arrays are actually not the same object in the HEAP)
+console.log();
+
+// How to make it work
+const arr = [1, 2];
+rest.set(arr, 'Test');
+console.log(rest.get(arr)); // Test
+
+// We can indeed use objects as map keys
+rest.set(document.querySelector('h1'), 'Heading');
+console.log(rest); // ...9:{h1 => "Heading"} (key: h1, value: Heading)
+
 /*
 //////////////////////////////////////////////////////////////
 ////////////////////////////SETS//////////////////////////////
 //////////////////////////////////////////////////////////////
 
-//Sets is collection of the !!UNIQUE!! values
+// Sets is collection of the !!UNIQUE!! values
 const orderSet = new Set([
   'Pasta',
   'Pizza',
