@@ -65,6 +65,46 @@ const restaurant = {
 //////////////////////////MAPS ITERATION//////////////////////
 //////////////////////////////////////////////////////////////
 
+// Create Map
+const question = new Map([
+  ['question', 'What is the best progtramming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct 🎉'],
+  [false, 'Try again!'],
+]);
+console.log(question);
+
+// Example above as the same this:
+console.log(Object.entries(openingHours));
+
+// Convert object to Map
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap); // now its MAP
+
+// ---------------------Big---------------
+// Iterations MAPS. With directly desctructuring in for-of loop
+// We dont need object.entries in "question", because the object is not a iterbale, but Maps its iterable
+console.log(question.get('question'));
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+}
+
+// КИгра вопрос - ответ с выводом в консоль
+// const answer = Number(prompt('Your answer'));
+const answer = 3; // Preset for avoid bug
+console.log(answer);
+
+console.log(question.get(question.get('correct') === answer));
+
+// Convert MAP to array
+console.log([...question]); // Array of arrays
+// console.log([...question.entries()]);
+console.log([...question.keys()]); // Array
+console.log([...question.values()]); // Array
+
 /*
 //////////////////////////////////////////////////////////////
 ////////////////////////////MAPS//////////////////////////////
