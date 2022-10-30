@@ -61,6 +61,7 @@ const restaurant = {
   },
 };
 
+/*
 //////////////////////////////////////////////////////////////
 //////////////////////////MAPS ITERATION//////////////////////
 //////////////////////////////////////////////////////////////
@@ -92,7 +93,7 @@ for (const [key, value] of question) {
   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
 }
 
-// КИгра вопрос - ответ с выводом в консоль
+// Игра вопрос - ответ с выводом в консоль
 // const answer = Number(prompt('Your answer'));
 const answer = 3; // Preset for avoid bug
 console.log(answer);
@@ -749,5 +750,72 @@ for (const [team, odd] of Object.entries(game.odds)) {
   // создаем строку str, которая создается проверяя свойства odds, если team (из Object.entries(game.odds) равно "x", то выводим "draw", если нет, то выводим строку про victory, где game - сам большой объект, а team - это название команд в том же объекте)
   const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
   console.log(`Odd of ${teamStr} ${odd}`);
+}
+*/
+
+//////////////////////////////////////////////////////////////
+////////////////////CODING CHALLENGE #3///////////////////////
+//////////////////////////////////////////////////////////////
+
+const gameEvents = new Map([
+  [17, '⚽ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽ GOAL'],
+  [80, '⚽ GOAL'],
+  [92, '🔶 Yellow card'],
+]);
+
+// -------------- # My solution -------------------
+
+//1. Создать массив на основе коллекции
+
+// const eventsSet = [...gameEvents.values()];
+// const events = [...new Set(eventsSet)];
+// console.log(events);
+
+//2. Убираем элемент из коллекции
+// gameEvents.delete(64);
+// console.log(gameEvents);
+
+// //3. Создаем строку на основе коллекции
+// for (const [key, value] of gameEvents) {
+//   if (key < 90)
+//     console.log(`An event happened on average, every ${value} minutes`);
+// }
+
+// //4. Делим коллекцию на части в зависимости от ключа и выводим в строку
+// for (const [i, y] of gameEvents) {
+//   const str = i < 45 ? `[FIRST HALF] ${i}: ${y}` : `[SECOND HALF] ${i}: ${y}`;
+//   console.log(str);
+// }
+
+// -------------- # NOT mine solution -------------------
+/*
+//1.
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+//2.
+gameEvents.delete(64);
+//3.
+console.log(
+  `An event happened on average, every ${90 / gameEvents.size} minutes`
+); // An event happened on average, every 9 minutes
+// BONUS
+const time = [...gameEvents.keys()].pop();
+console.log(time);
+console.log(
+  `An event happened on average, every ${time / gameEvents.size} minutes`
+); // An event happened on average, every 9.2 minutes
+
+//4.
+for (const [min, event] of gameEvents) {
+  const half = min <= 45 ? 'FIRST' : 'SECOND';
+  console.log(`[${half} HALF] ${min}: ${event}`);
 }
 */
