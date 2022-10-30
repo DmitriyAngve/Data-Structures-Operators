@@ -61,6 +61,178 @@ const restaurant = {
   },
 };
 
+//////////////////////////////////////////////////////////////
+/////////////////////WORKING WITH STRINGS/////////////////////
+//////////////////////////////////////////////////////////////
+
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+// Extracting letters
+console.log(plane[0]); // plane at position [0] - could be "A"
+console.log(plane[1]); // 3
+console.log(plane[2]); // 2
+console.log('B737'[0]); // B
+
+// Length of strings
+console.log(airline.length); // 16
+console.log('B737'.length); // 4
+
+// --------------------------Methods!------------------------
+console.log(airline.indexOf('r')); // "r" (space)
+console.log(airline.lastIndexOf('r')); // 10 (position in string)
+console.log(airline.indexOf('portugal')); // -1 - not found
+
+// Slice method
+console.log(airline.slice(4)); // Air Portugal (substring)
+console.log(airline.slice(4, 7)); // "Air" starts with 4 ended with 7 (include 7)
+
+// Let extract the first word
+console.log(airline.slice(0, airline.indexOf(' '))); // TAP
+console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // Portugal
+
+console.log(airline.slice(-2)); // lasts two letters from Portugal "al"
+console.log(airline.slice(1, -1)); // AP Air Portuga (delete first and last letters)
+
+// Real-world example
+const chekMiddleSeat = function (seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1); // Take last character of string
+  if (s === 'B' || s === 'E') console.log(`Yoy got middle seat!`);
+  else console.log(`You got lucky!`);
+};
+
+chekMiddleSeat('11B');
+chekMiddleSeat('23C');
+chekMiddleSeat('3E');
+
+// How it works - JS convert that primitive string to a string object (this process call BOXING)
+console.log(new String('jonas'));
+console.log(typeof new String('jonas')); // object
+
+console.log(typeof new String('jonas').slice(1)); // string
+
+// Additional string methods!
+console.log(airline.toLowerCase()); // tap air portugal
+console.log(airline.toUpperCase()); // TAP AIR PORTUGAL
+
+// Fix capitalization in name
+const passenger = 'jOnAS';
+const passengerLower = passenger.toLowerCase();
+// Need to get Jonas:
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect); // Jonas
+
+// Real-world example (comparing user email)
+const email = 'hello@jonas.io'; // true login
+const loginEmail = '   Hello@Jonas.Io \n'; // user log in
+// Lets convert second string into the fisrt
+//1. Lets capitalization into lower case
+const lowerEmail = loginEmail.toLowerCase();
+//2. Get rid of all the wide space
+const trimmedEmail = lowerEmail.trim();
+console.log(trimmedEmail); // hello@jonas.io
+
+// Do this in ONE STEP
+const normalizeEmail = loginEmail.toLowerCase().trim();
+console.log(normalizeEmail); // hello@jonas.io
+console.log(email === normalizeEmail); // true
+
+// Replacing method
+const priceGB = '288,97£'; // how to convert with "," into "."
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+console.log(priceUS); // 288.97$
+
+const announcement =
+  'All passengers come to bording door 23. Boarding door 23!';
+console.log(announcement.replace('door', 'gate')); // All passengers come to bording gate 23. Boarding door 23!
+// In 2022 replaceAll working
+console.log(announcement.replaceAll('door', 'gate')); // All passengers come to bording gate 23. Boarding gate 23!
+// Old methods too replaceAll (/door/g - regular expression):
+console.log(announcement.replace(/door/g, 'gate')); // All passengers come to bording gate 23. Boarding gate 23!
+
+// Methods return Booleans
+const newPlane = 'Airbus A320neo';
+console.log(newPlane.includes('A320')); // true
+console.log(newPlane.includes('Boeing')); // false
+console.log(newPlane.startsWith('Airb')); // true
+
+// Real-world example
+if (newPlane.startsWith('Airbus') && newPlane.endsWith('neo')) {
+  console.log('Part of the NEW AirBus family'); // Part of the NEW AirBus family
+}
+
+// Practice exercise
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('You are NOT allowed on board');
+  } else {
+    console.log('Welcome aboard');
+  }
+};
+
+checkBaggage('I have laptop, some Food and a pocket KNIFE');
+checkBaggage('Socks and camer');
+checkBaggage('Got some snacks and a gun for protection');
+
+// SPLIT method (split into multiple parts based on a divider string)
+console.log('a+very+nice+string'.split('+')); // ['a', 'very', 'nice', 'string']
+console.log('Jonas Schmedtmann'.split(' ')); // ['Jonas', 'Schmedtmann']
+
+// Use the power of desctructuring (creat variables directly like this)
+const [firstName, lasName] = 'Jonas Schmedtmann'.split(' ');
+
+// Method Join
+const newName = ['Mr.', firstName, lasName.toUpperCase()].join('--');
+console.log(newName); // Mr.--Jonas--SCHMEDTMANN
+
+// Capitalize name
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+  for (const n of names) {
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1));// Capitalize all words
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase())); // Some result
+  }
+  console.log(namesUpper.join(' '));
+};
+
+capitalizeName('jessica ann smith davis'); // Jessica Ann Smith Davis
+capitalizeName('jonas schmedtmann'); // Jonas Schmedtmann
+
+// Padding
+const message = 'Go to gate 23!';
+console.log(message.padStart(25, '+').padEnd(35, '+')); // +++++++++++Go to gate 23!++++++++++ (extended to 25 at the beginning and 35 at the end)
+console.log(`Jonas`.padStart(25, '+')); // ++++++++++++++++++++Jonas
+
+// Real-world example
+const maskCreditCard = function (number) {
+  const str = number + ''; // number(as a string) + ''(empty string) become a string. When one of the operands of the plus  sign is a it will convert all operands to a string
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+console.log(maskCreditCard(42342224242847482)); // *************7480
+console.log(maskCreditCard(4234221)); // ***4221
+console.log(maskCreditCard('3454955674545574')); // ************5574
+
+// Repeat method
+const message2 = 'Bad weather... All departures Deplayed...';
+console.log(message2.repeat(5)); // Bad weather... All departures Deplayed... Bad weather... All departures Deplayed... ...
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} palnes in line ${'✈'.repeat(n)}`);
+};
+
+planesInLine(5); // There are 5 palnes in line ✈✈✈✈✈
+planesInLine(3); // There are 5 palnes in line ✈✈✈
+planesInLine(20); // There are 20 palnes in line ✈✈✈✈✈✈✈✈✈✈✈✈✈✈✈✈✈✈✈✈
+
+//
+
+//
+
 /*
 //////////////////////////////////////////////////////////////
 //////////////////////////MAPS ITERATION//////////////////////
