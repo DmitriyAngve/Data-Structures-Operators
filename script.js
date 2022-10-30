@@ -61,6 +61,7 @@ const restaurant = {
   },
 };
 
+/*
 //////////////////////////////////////////////////////////////
 /////////////////////WORKING WITH STRINGS/////////////////////
 //////////////////////////////////////////////////////////////
@@ -174,7 +175,7 @@ const checkBaggage = function (items) {
 };
 
 checkBaggage('I have laptop, some Food and a pocket KNIFE');
-checkBaggage('Socks and camer');
+checkBaggage('Socks and camera');
 checkBaggage('Got some snacks and a gun for protection');
 
 // SPLIT method (split into multiple parts based on a divider string)
@@ -924,6 +925,7 @@ for (const [team, odd] of Object.entries(game.odds)) {
   console.log(`Odd of ${teamStr} ${odd}`);
 }
 */
+/*
 
 //////////////////////////////////////////////////////////////
 ////////////////////CODING CHALLENGE #3///////////////////////
@@ -991,3 +993,25 @@ for (const [min, event] of gameEvents) {
   console.log(`[${half} HALF] ${min}: ${event}`);
 }
 */
+
+//////////////////////////////////////////////////////////////
+////////////////////CODING CHALLENGE #4///////////////////////
+//////////////////////////////////////////////////////////////
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  const rows = text.split('\n');
+
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.toLocaleLowerCase().trim().split('_');
+    // console.log(row, first, second);
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+    console.log(`${output.padEnd(20)} ${'✔'.repeat(i + 1)}`);
+  }
+});
